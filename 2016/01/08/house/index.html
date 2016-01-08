@@ -4,10 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>house | jason leo&#39;s Home</title>
+    <title>welcome leo&#39;s house | jason leo&#39;s Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="jason leo">
+    
+    <meta name="description" content="wode laojia">
     
     
     
@@ -58,12 +60,12 @@
 
     </header>
     <div id="container">
-      <div id="main" class="welcome" itemscope itemprop="blogPost">
+      <div id="main" class="post" itemscope itemprop="blogPost">
 	<article itemprop="articleBody"> 
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/01/08/house/" title="house" itemprop="url">house</a>
+      <a href="/2016/01/08/house/" title="welcome leo&#39;s house" itemprop="url">welcome leo&#39;s house</a>
   </h1>
   <p class="article-author">By
     
@@ -71,7 +73,7 @@
     </p>
   <p class="article-time">
     <time datetime="2016-01-08T04:36:28.000Z" itemprop="datePublished">2016-01-08</time>
-    更新日期:<time datetime="2016-01-08T04:36:28.103Z" itemprop="dateModified">2016-01-08</time>
+    更新日期:<time datetime="2016-01-08T08:16:56.324Z" itemprop="dateModified">2016-01-08</time>
     
   </p>
 </header>
@@ -83,7 +85,8 @@
 		
 		</div>
 		
-		  
+		<p>wode laojia </p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 
@@ -92,7 +95,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://blog.laijie.top/2016/01/08/house/" data-title="house | jason leo&#39;s Home" data-tsina="null" class="share clearfix">
+  <div data-url="http://blog.laijie.top/2016/01/08/house/" data-title="welcome leo&#39;s house | jason leo&#39;s Home" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -115,6 +118,11 @@
 	
 </div>  
       <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+  
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
@@ -234,10 +242,38 @@ $(document).ready(function(){
 </script>
 
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
 
 
 
 
 
   </body>
- </html>
+</html>
