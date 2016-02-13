@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>数据库并发访问问题 | jason leo&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="常见并发并发一致性问题包括：丢失的修改、不可重复读、读脏数据、幻影读（幻影读在一些资料中往往与不可重复读归为一类）.答案补充 　　不可重复读是指事务T1读取数据后,事务T2执行更新操作,使T1无法再现前一次读取结果.具体地讲,不可重复读包括三种情况：　　事务T1读取某一数据后,事务T2对其做了修改,当事务1再次读该数据时,得到与前一次不同的值.例如,T1读取B=100进行运算,T2读取同一数据B,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库并发访问问题">
+<meta property="og:url" content="http://blog.laijie.top/2015/12/16/e6-95-b0-e6-8d-ae-e5-ba-93-e5-b9-b6-e5-8f-91-e8-ae-bf-e9-97-ae-e9-97-ae-e9-a2-98/index.html">
+<meta property="og:site_name" content="jason leo's Home">
+<meta property="og:description" content="常见并发并发一致性问题包括：丢失的修改、不可重复读、读脏数据、幻影读（幻影读在一些资料中往往与不可重复读归为一类）.答案补充 　　不可重复读是指事务T1读取数据后,事务T2执行更新操作,使T1无法再现前一次读取结果.具体地讲,不可重复读包括三种情况：　　事务T1读取某一数据后,事务T2对其做了修改,当事务1再次读该数据时,得到与前一次不同的值.例如,T1读取B=100进行运算,T2读取同一数据B,">
+<meta property="og:updated_time" content="2016-02-13T09:31:13.030Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库并发访问问题">
+<meta name="twitter:description" content="常见并发并发一致性问题包括：丢失的修改、不可重复读、读脏数据、幻影读（幻影读在一些资料中往往与不可重复读归为一类）.答案补充 　　不可重复读是指事务T1读取数据后,事务T2执行更新操作,使T1无法再现前一次读取结果.具体地讲,不可重复读包括三种情况：　　事务T1读取某一数据后,事务T2对其做了修改,当事务1再次读该数据时,得到与前一次不同的值.例如,T1读取B=100进行运算,T2读取同一数据B,">
+  
+    <link rel="alternative" href="/atom.xml" title="jason leo&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://ww2.sinaimg.cn/mw1024/c546ae2fjw1et76xfvl40j20af0dcwex.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">jason leo</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">all is well</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>標籤</li>
+						
+						
+						<li>關於</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="http://www.github.com/zhanglaijie" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://www.weibo.com/softwarelj" title="weibo">weibo</a>
+					        
+								<a class="facebook" target="_blank" href="http://www.facebook.com/zhanglaijie" title="facebook">facebook</a>
+					        
+								<a class="mail" target="_blank" href="mailto:i@laijie.top" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/tablesorter/" style="font-size: 10px;">tablesorter</a> <a href="/tags/策略模式/" style="font-size: 10px;">策略模式</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">jason leo</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://ww2.sinaimg.cn/mw1024/c546ae2fjw1et76xfvl40j20af0dcwex.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">jason leo</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">all is well</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="http://www.github.com/zhanglaijie" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://www.weibo.com/softwarelj" title="weibo">weibo</a>
+			        
+						<a class="facebook" target="_blank" href="http://www.facebook.com/zhanglaijie" title="facebook">facebook</a>
+			        
+						<a class="mail" target="_blank" href="mailto:i@laijie.top" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-e6-95-b0-e6-8d-ae-e5-ba-93-e5-b9-b6-e5-8f-91-e8-ae-bf-e9-97-ae-e9-97-ae-e9-a2-98" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/16/e6-95-b0-e6-8d-ae-e5-ba-93-e5-b9-b6-e5-8f-91-e8-ae-bf-e9-97-ae-e9-97-ae-e9-a2-98/" class="article-date">
+  	<time datetime="2015-12-16T08:21:28.000Z" itemprop="datePublished">2015-12-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据库并发访问问题
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/数据库/">数据库</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>常见并发并发一致性问题包括：丢失的修改、不可重复读、读脏数据、幻影读（幻影读在一些资料中往往与不可重复读归为一类）.答案补充 　　不可重复读是指事务T1读取数据后,事务T2执行更新操作,使T1无法再现前一次读取结果.具体地讲,不可重复读包括三种情况：<br>　　事务T1读取某一数据后,事务T2对其做了修改,当事务1再次读该数据时,得到与前一次不同的值.例如,T1读取B=100进行运算,T2读取同一数据B,对其进行修改后将B=200写回数据库.T1为了对读取值校对重读B,B已为200,与第一次读取值不一致.<br>　　事务T1按一定条件从数据库中读取了某些数据记录后,事务T2删除了其中部分记录,当T1再次按相同条件读取数据时,发现某些记录神密地消失了.<br>　　事务T1按一定条件从数据库中读取某些数据记录后,事务T2插入了一些记录,当T1再次按相同条件读取数据时,发现多了一些记录.（这也叫做幻影读） 答案补充 　　读”脏”数据是指事务T1修改某一数据,并将其写回磁盘,事务T2读取同一数据后,T1由于某种原因被撤消,这时T1已修改过的数据恢复原值,T2读到的数据就与数据库中的数据不一致,则T2读到的数据就为”脏”数据,即不正确的数据.<br>　　产生上述三类数据不一致性的主要原因是并发操作破坏了事务的隔离性.并发控制就是要用正确的方式调度并发操作,使一个用户事务的执行不受其它事务的干扰,从而避免造成数据的不一致性.答案补充 两个事务T1和T2读入同一数据并修改,T2提交的结果破坏了T1提交的结果,导致T1的修改被丢失,即丢失的修改.</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/12/16/e8-a7-82-e5-af-9f-e8-80-85-e6-a8-a1-e5-bc-8f/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          观察者模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/12/15/e6-8e-92-e5-ba-8f-e7-ae-97-e6-b3-95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">排序算法</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="e6-95-b0-e6-8d-ae-e5-ba-93-e5-b9-b6-e5-8f-91-e8-ae-bf-e9-97-ae-e9-97-ae-e9-a2-98" data-title="数据库并发访问问题" data-url="http://blog.laijie.top/2015/12/16/e6-95-b0-e6-8d-ae-e5-ba-93-e5-b9-b6-e5-8f-91-e8-ae-bf-e9-97-ae-e9-97-ae-e9-a2-98/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 jason leo
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

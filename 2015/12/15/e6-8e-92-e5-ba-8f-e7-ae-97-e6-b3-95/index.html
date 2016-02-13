@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>排序算法 | jason leo&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="稳定性的理解：
+
+如果数组中的两个数的大小相同，在排序的过程中前后顺序变化过，说明这种算法不稳定。如果没有变化过说明这种算法是稳定的
+
+举个例子：如果一个班级按学生的学号排完顺序后，又要根据年龄排序 。如果不稳定的话，相同年龄的被交换过，学号也是无序的。排序就没有了意义。
+
+排序算法分为内排序和外排序 ，内排序指数量比较少可以在内存中进行排序。
+
+
+插入排序
+
+基本思想:
+将一个记录插入到已排序好">
+<meta property="og:type" content="article">
+<meta property="og:title" content="排序算法">
+<meta property="og:url" content="http://blog.laijie.top/2015/12/15/e6-8e-92-e5-ba-8f-e7-ae-97-e6-b3-95/index.html">
+<meta property="og:site_name" content="jason leo's Home">
+<meta property="og:description" content="稳定性的理解：
+
+如果数组中的两个数的大小相同，在排序的过程中前后顺序变化过，说明这种算法不稳定。如果没有变化过说明这种算法是稳定的
+
+举个例子：如果一个班级按学生的学号排完顺序后，又要根据年龄排序 。如果不稳定的话，相同年龄的被交换过，学号也是无序的。排序就没有了意义。
+
+排序算法分为内排序和外排序 ，内排序指数量比较少可以在内存中进行排序。
+
+
+插入排序
+
+基本思想:
+将一个记录插入到已排序好">
+<meta property="og:image" content="http://laijie.top/wp-content/uploads/2015/12/1342514529_5795_thumb.jpg">
+<meta property="og:image" content="http://laijie.top/wp-content/uploads/2015/12/1342520948_8667_thumb.jpg">
+<meta property="og:image" content="http://laijie.top/wp-content/uploads/2015/12/220pxInsertionsortexample300px_thumb.gif">
+<meta property="og:image" content="https://upload.wikimedia.org/math/0/1/0/010a4978e9a370acc652fba403070892.png">
+<meta property="og:image" content="http://laijie.top/wp-content/uploads/2015/12/Sorting_shellsort_anim_thumb.gif">
+<meta property="og:image" content="https://upload.wikimedia.org/math/6/d/3/6d38a675f93b36a8c9d44592f7369baa.png">
+<meta property="og:image" content="https://upload.wikimedia.org/math/d/4/2/d42c30cab89703876468e2b4d9b54f32.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/c/c5/Merge_sort_animation2.gif">
+<meta property="og:updated_time" content="2016-02-13T09:31:13.396Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="排序算法">
+<meta name="twitter:description" content="稳定性的理解：
+
+如果数组中的两个数的大小相同，在排序的过程中前后顺序变化过，说明这种算法不稳定。如果没有变化过说明这种算法是稳定的
+
+举个例子：如果一个班级按学生的学号排完顺序后，又要根据年龄排序 。如果不稳定的话，相同年龄的被交换过，学号也是无序的。排序就没有了意义。
+
+排序算法分为内排序和外排序 ，内排序指数量比较少可以在内存中进行排序。
+
+
+插入排序
+
+基本思想:
+将一个记录插入到已排序好">
+  
+    <link rel="alternative" href="/atom.xml" title="jason leo&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://ww2.sinaimg.cn/mw1024/c546ae2fjw1et76xfvl40j20af0dcwex.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">jason leo</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">all is well</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>標籤</li>
+						
+						
+						<li>關於</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="http://www.github.com/zhanglaijie" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://www.weibo.com/softwarelj" title="weibo">weibo</a>
+					        
+								<a class="facebook" target="_blank" href="http://www.facebook.com/zhanglaijie" title="facebook">facebook</a>
+					        
+								<a class="mail" target="_blank" href="mailto:i@laijie.top" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/tablesorter/" style="font-size: 10px;">tablesorter</a> <a href="/tags/策略模式/" style="font-size: 10px;">策略模式</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">jason leo</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://ww2.sinaimg.cn/mw1024/c546ae2fjw1et76xfvl40j20af0dcwex.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">jason leo</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">all is well</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="http://www.github.com/zhanglaijie" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://www.weibo.com/softwarelj" title="weibo">weibo</a>
+			        
+						<a class="facebook" target="_blank" href="http://www.facebook.com/zhanglaijie" title="facebook">facebook</a>
+			        
+						<a class="mail" target="_blank" href="mailto:i@laijie.top" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-e6-8e-92-e5-ba-8f-e7-ae-97-e6-b3-95" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/15/e6-8e-92-e5-ba-8f-e7-ae-97-e6-b3-95/" class="article-date">
+  	<time datetime="2015-12-15T12:12:02.000Z" itemprop="datePublished">2015-12-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      排序算法
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/算法/">算法</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <font color="#ff0000"><strong>稳定性的理解：</strong></font>
+
+<font color="#0080ff">如果数组中的两个数的大小相同，在排序的过程中前后顺序变化过，说明这种算法不稳定。如果没有变化过说明这种算法是稳定的</font>
+
+<font color="#0080ff">举个例子：如果一个班级按学生的学号排完顺序后，又要根据年龄排序 。如果不稳定的话，相同年龄的被交换过，学号也是无序的。排序就没有了意义。</font>
+
+<p>排序算法分为内排序和外排序 ，内排序指数量比较少可以在内存中进行排序。</p>
+<p><a href="http://laijie.top/wp-content/uploads/2015/12/1342514529_5795.jpg" target="_blank" rel="external"><img src="http://laijie.top/wp-content/uploads/2015/12/1342514529_5795_thumb.jpg" alt="1342514529_5795" title="1342514529_5795"></a></p>
+<ul>
+<li><h2 id="u63D2_u5165_u6392_u5E8F"><a href="#u63D2_u5165_u6392_u5E8F" class="headerlink" title="插入排序"></a>插入排序</h2></li>
+</ul>
+<p><strong><font color="#ff0000" size="5">基本思想:</font></strong></p>
+<p>将一个记录插入到已排序好的有序表中，从而得到一个新，记录数增1的有序表。即：先将序列的第1个记录看成是一个有序的子序列，然后从第2个记录逐个进行插入，直至整个序列有序为止。</p>
+<p>要点：设立哨兵，作为临时存储和判断数组边界之用。</p>
+<p>直接插入排序示例：</p>
+<p><a href="http://laijie.top/wp-content/uploads/2015/12/1342520948_8667.jpg" target="_blank" rel="external"><img src="http://laijie.top/wp-content/uploads/2015/12/1342520948_8667_thumb.jpg" alt="1342520948_8667" title="1342520948_8667"></a></p>
+<p>动态演示：</p>
+<p><a href="http://laijie.top/wp-content/uploads/2015/12/220pxInsertionsortexample300px.gif" target="_blank" rel="external"><img src="http://laijie.top/wp-content/uploads/2015/12/220pxInsertionsortexample300px_thumb.gif" alt="220px-Insertion-sort-example-300px" title="220px-Insertion-sort-example-300px"></a></p>
+<p>如果碰见一个和插入元素相等的，那么插入元素把想插入的元素放在相等元素的后面。所以，相等元素的前后顺序没有改变，从原无序序列出去的顺序就是排好序后的顺序，<strong>所以插入排序是<font color="#0080ff">稳定</font>的。</strong></p>
+<font color="#ff0000">算法实现（JAVA版）</font><br><pre class="brush: java; auto-links: true; collapse: false; first-line: 1; gutter: true; html-script: false; light: false; ruler: false; smart-tabs: true; tab-size: 4; toolbar: true;">public static void insertion<em>sort(int[] arr) {<br>    int i, j, len = arr.length;<br>    int temp;<br>    for (i = 1; i &lt; len; i++) {<br>        temp = arr[i];<br>        for (j = i - 1; j <font color="#ff0000">&gt;<strong>=</strong></font> 0 &amp;&amp; arr[j] &gt; temp; j–)<br>            arr[j + 1] = arr[j];<br>        arr[j + 1] = temp;<br>    }<br>}</em></pre><br><br><strong><font color="#ff0000">效率（时间复杂度）：</font></strong><br><br><img src="https://upload.wikimedia.org/math/0/1/0/010a4978e9a370acc652fba403070892.png" alt="{\mathcal {O}}(n^{2})"> 如果目标是把n个元素的序列升序排列，那么采用<strong>插入排序</strong>存在最好情况和最坏情况。最好情况就是，序列已经是升序排列了，在这种情况下，需要进行的比较操作需(n-1)_次即可。最坏情况就是，序列是降序排列，那么此时需要进行的比较共有<em>n(n-1)/2</em>次。<strong>插入排序</strong>的赋值操作是比较操作的次数减去<em>(n-1)</em>次。平均来说<strong>插入排序</strong>算法复杂度为<strong>O(<em>n</em><sup>2</sup>)</strong>。因而，<strong>插入排序</strong>不适合对于数据量比较大的排序应用。但是，如果需要排序的数据量很小，例如，量级小于千，那么<strong>插入排序</strong>还是一个不错的选择。 插入排序在工业级库中也有着广泛的应用，在STL的sort算法和stdlib的qsort算法中，都将插入排序作为快速排序的补充，用于少量元素的排序（通常为8个或以下）。<br><br>其他的插入排序有二分插入排序，2-路插入排序。<br><br>*   ## 希尔排序<br><br>希尔排序是基于插入排序的以下两点性质而提出改进方法的：<br><br>1.  插入排序在对几乎已经排好序的数据操作时，效率高，即可以达到<a href="https://zh.wikipedia.org/w/index.php?title=%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F&amp;action=edit&amp;redlink=1" title="%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F&amp;action=edit&amp;redlink=1" target="_blank" rel="external">线性排序</a>的效率<li>但插入排序一般来说是低效的，因为插入排序每次只能将数据移动一位<br><br><font color="#ff0000">基本思路：</font>
+
+<p>希尔排序通过将比较的全部元素分为几个区域来提升<a href="https://zh.wikipedia.org/wiki/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F" target="_blank" rel="external">插入排序</a>的性能。这样可以让一个元素可以一次性地朝最终位置前进一大步。然后算法再取越来越小的步长进行排序，算法的最后一步就是普通的<a href="https://zh.wikipedia.org/wiki/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F" target="_blank" rel="external">插入排序</a>，但是到了这步，需排序的数据几乎是已排好的了（此时<a href="https://zh.wikipedia.org/wiki/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F" target="_blank" rel="external">插入排序</a>较快）。</p>
+<p><a href="http://laijie.top/wp-content/uploads/2015/12/Sorting_shellsort_anim.gif" target="_blank" rel="external"><img src="http://laijie.top/wp-content/uploads/2015/12/Sorting_shellsort_anim_thumb.gif" alt="Sorting_shellsort_anim" title="Sorting_shellsort_anim"></a>&nbsp;</p>
+<font color="#ff0000">算法实现</font><br><pre class="brush: java; auto-links: true; collapse: false; first-line: 1; gutter: true; html-script: false; light: false; ruler: false; smart-tabs: true; tab-size: 4; toolbar: true;">public static void shell_sort(int[] arr) {<br>    int gap = 1, i, j, len = arr.length;<br>    int temp;<br>    while (gap &lt; len / 3)<br>        gap = gap <em> 3 + 1; // &lt;O(n^(3/2)) by Knuth,1973&gt;: 1, 4, 13, 40, 121, …<br>    for (; gap &gt; 0; gap /= 3)<br>        for (i = gap; i &lt; len; i++) {<br>            temp = arr[i];<br>            for (j = i - gap; j <font color="#ff0000">&gt;<em>*=</em></font></em> 0 &amp;&amp; arr[j] &gt; temp; j -= gap)<br>                arr[j + gap] = arr[j];<br>            arr[j + gap] = temp;<br>        }<br>}</pre><br><br><font color="#ff0000">效率问题：</font>
+
+<p>—O(<em>n</em> log<sup>2</sup> <em>n</em>)如果使用最佳的现在版本 属于不稳定算法。</p>
+<ul>
+<li><h2 id="u7B80_u5355_u9009_u62E9_u6392_u5E8F"><a href="#u7B80_u5355_u9009_u62E9_u6392_u5E8F" class="headerlink" title="简单选择排序"></a><strong><font color="#ff0000">简单选择排序</font></strong></h2></li>
+</ul>
+<h2 id="u57FA_u672C_u601D_u60F3_uFF1A"><a href="#u57FA_u672C_u601D_u60F3_uFF1A" class="headerlink" title="基本思想："></a><strong><font color="#ff0000">基本思想：</font></strong></h2><p>&nbsp;</p>
+<ul>
+<li><h2 id="u5F52_u5E76_u6392_u5E8F_uFF08merge_sort_uFF09_nlog_28n_29"><a href="#u5F52_u5E76_u6392_u5E8F_uFF08merge_sort_uFF09_nlog_28n_29" class="headerlink" title="归并排序（merge_sort） nlog(n)"></a>归并排序（merge_sort） nlog(n)</h2></li>
+</ul>
+<font color="#ff0000"><strong>基本思想：</strong></font>
+
+<p>一句话就是分而治之 （<em>divide and conquer</em>）</p>
+<h5 id="u9012_u5F52_u6CD5"><a href="#u9012_u5F52_u6CD5" class="headerlink" title="递归法"></a><strong>递归法</strong></h5><ol>
+<li>将序列每相邻两个数字进行<a href="https://zh.wikipedia.org/wiki/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F#.E5.BD.92.E5.B9.B6.E6.93.8D.E4.BD.9C" target="_blank" rel="external">归并操作</a>，形成<img src="https://upload.wikimedia.org/math/6/d/3/6d38a675f93b36a8c9d44592f7369baa.png" alt="floor(n/2)">个序列，排序后每个序列包含两个元素</li><li>将上述序列再次归并，形成<img src="https://upload.wikimedia.org/math/d/4/2/d42c30cab89703876468e2b4d9b54f32.png" alt="floor(n/4)">个序列，每个序列包含四个元素</li><li>重复步骤2，直到所有元素排序完毕</li>
+</ol>
+<p>归并操作（merge），也叫归并算法，指的是将两个已经排序的序列合并成一个序列的操作。归并排序算法依赖归并操作。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Merge_sort_animation2.gif" alt="Merge sort animation2.gif"></p>
+<font color="#ff0000"><strong>算法实现：</strong></font>
+
+<ol>
+<li>先实现并归操作</li>
+</ol>
+<p>&nbsp;&nbsp; 对于两个有序的数组，要将其合并为一个有序数组，我们可以很容易地写出如下代码：</p>
+<pre class="brush: java; auto-links: true; collapse: false; first-line: 1; gutter: true; html-script: false; light: false; ruler: false; smart-tabs: true; tab-size: 4; toolbar: true;">//both a and b is ascend.
+public void merge(int[] a, int[] b, int[] c){
+    int i=0,j=0,k=0;
+    while (i&lt;=a.length &amp;&amp; j&lt;=b.length){
+        if (a[i]&lt;=b[i]){
+            c[k++]=a[i++];
+        }
+        else{
+            c[k++]=b[j++];
+        }
+    }
+    while (i&lt;=a.length){
+        c[k++]=a[i++];
+    }
+    while (j&lt;=b.length){
+        c[k++]=b[j++];
+    }
+}</pre>
+
+<p>容易看出，这样的合并算法是高效的，其时间复杂度可达到O(n)。</p>
+<p>假如有一个无序数组需要排序，但它的两个完全划分的子数组A和B分别有序，借助上述代码，我们也可以很容易实现；</p>
+<p>那么，如果A,B无序，怎么办呢？可以把它们再分成更小的数组。.如此一直划分到最小，每个子数组都只有一个元素，则可以视为有序数组。从这些最小的数组开始，逆着上面的步骤合并回去，整个数组就排好了。总而言之，归并排序就是使用递<strong>归</strong>，先分解数组为子数组，再合<strong>并</strong>数组。</p>
+<pre class="brush: java; auto-links: true; collapse: false; first-line: 1; gutter: true; html-script: false; light: false; ruler: false; smart-tabs: true; tab-size: 4; toolbar: true;">package top.laijie.sort.algorithms;
+
+public class Merge_Sort {
+    static int number=0;
+    public static void main(String[] args) {
+        int[] a = {26, 5, 98, 108, 28, 99, 100, 56, 34, 1 };
+        printArray("排序前：",a);
+        MergeSort(a);
+        printArray("排序后：",a);
+    }
+
+    private static void printArray(String pre,int[] a) {
+        System.out.print(pre+"\n");
+        for(int i=0;i&lt;a.length;i++)
+            System.out.print(a[i]+"\t");    
+        System.out.println();
+    }
+
+    private static void MergeSort(int[] a) {
+        // TODO Auto-generated method stub
+        System.out.println("开始排序");
+        Sort(a, 0, a.length - 1);
+    }
+
+    private static void Sort(int[] a, int left, int right) {
+        if(left&gt;=right)
+            return;
+
+        int mid = (left + right) / 2;
+        //二路归并排序里面有两个Sort，多路归并排序里面写多个Sort就可以了
+        Sort(a, left, mid);
+        Sort(a, mid + 1, right);
+        merge(a, left, mid, right);
+
+    }
+
+    private static void merge(int[] a, int left, int mid, int right) {
+
+        int[] tmp = new int[a.length];
+        int r1 = mid + 1;
+        int tIndex = left;
+        int cIndex=left;
+        // 逐个归并
+        while(left &lt;=mid &amp;&amp; r1 &lt;= right) {
+            if (a[left] &lt;= a[r1]) 
+                tmp[tIndex++] = a[left++];
+            else
+                tmp[tIndex++] = a[r1++];
+        }
+            // 将左边剩余的归并
+            while (left &lt;=mid) {
+                tmp[tIndex++] = a[left++];
+            }
+            // 将右边剩余的归并
+            while ( r1 &lt;= right ) {
+                tmp[tIndex++] = a[r1++];
+            }     
+            System.out.println("第"+(++number)+"趟排序:\t");
+            // TODO Auto-generated method stub
+            //从临时数组拷贝到原数组
+             while(cIndex&lt;=right){
+                    a[cIndex]=tmp[cIndex];
+                    //输出中间归并排序结果
+                    System.out.print(a[cIndex]+"\t");
+                    cIndex++;
+                }
+             System.out.println();
+        }
+
+    }</pre>
+
+<font color="#ff0000"><strong>时间复杂度（空间复杂度）：</strong></font>
+
+<p>归并排序的效率是很高的，由于递归划分为子序列只需要logN复杂度，而合并每两个子序列需要大约2n次赋值，为O(n)复杂度，因此，只需要简单相乘即可得到归并排序的时间复杂度 O(㏒n)。并且由于归并算法是固定的，不受输入数据影响，所以它在最好、最坏、平均情况下表现几乎相同，均为O(㏒n)。</p>
+<p>但是，归并排序最大的缺陷在于其空间复杂度。从上面的代码可以看到，在合并子数组的时候需要一个辅助数组，然后再把这个数据拷贝回原数组。所以，归并排序的空间复杂度（额外空间）为O(n)。可不可以省略这个数组呢？不行!如果取消辅助数组而又要保证原来的数组中数据不被覆盖，那就必须要在数组中花费大量时间来移动数据。不仅容易出错，还降低了效率。因此这个辅助空间是少不掉的。</p>
+<p><strong><font color="#ff0000">算法稳定性</font></strong></p>
+<p>因为我们在遇到相等的数据的时候必然是按顺序“抄写”到辅助数组上的，所以，归并排序同样是稳定算法。</p>
+<p><strong><font color="#ff0000">算法适用场景</font></strong></p>
+<p>归并排序在数据量比较大的时候也有较为出色的表现（效率上），但是，其空间复杂度O(n)使得在数据量特别大的时候（例如，1千万数据）几乎不可接受。而且，考虑到有的机器内存本身就比较小，因此，采用归并排序一定要注意。</p>
+<p>&nbsp;</p>
+<p>参考：<a href="http://http://blog.csdn.net/hguisu/article/details/7776068" target="_blank" rel="external">真实的归宿的CSDN博客</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://zh.wikipedia.org" target="_blank" rel="external">维基百科</a></p>
+</li>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/12/16/e6-95-b0-e6-8d-ae-e5-ba-93-e5-b9-b6-e5-8f-91-e8-ae-bf-e9-97-ae-e9-97-ae-e9-a2-98/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          数据库并发访问问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/12/12/e6-8e-a5-e5-8f-a3-e5-92-8c-e6-8a-bd-e8-b1-a1-e7-b1-bb-e7-9a-84-e5-8c-ba-e5-88-ab-e5-92-8c-e8-81-94-e7-b3-bb/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">接口和抽象类的区别和联系</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="e6-8e-92-e5-ba-8f-e7-ae-97-e6-b3-95" data-title="排序算法" data-url="http://blog.laijie.top/2015/12/15/e6-8e-92-e5-ba-8f-e7-ae-97-e6-b3-95/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 jason leo
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
