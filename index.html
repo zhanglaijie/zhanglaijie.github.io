@@ -177,73 +177,6 @@
 
       <div class="body-wrap">
   
-    <article id="post-Spring_Study" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/07/Spring_Study/" class="article-date">
-  	<time datetime="2016-01-07T11:05:22.000Z" itemprop="datePublished">2016-01-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/07/Spring_Study/">Spring 简介</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Spring_Framework"><a href="#Spring_Framework" class="headerlink" title="Spring Framework"></a>Spring Framework</h2><p><strong>Spring Framework</strong>是一个开源的Java/Java EE 全能栈(full-stack)的应用程序框架，以Apache许可证形式发布。该框架提供了一个简易的开发方式，这种开发方式，将避免那些可能致使底层代码变得繁杂混乱的大量的属性文件和帮助类。</p>
-<h5 id="Spring_u4E2D_u5305_u542B_u7684_u5173_u952E_u7279_u6027"><a href="#Spring_u4E2D_u5305_u542B_u7684_u5173_u952E_u7279_u6027" class="headerlink" title="Spring中包含的关键特性"></a>Spring中包含的关键特性</h5><ul>
-<li>强大的基于JavaBeans的采用控制反转(Inversion of Control,Ioc)原则的配置管理，使得应用程序的组建更加快捷简易。</li>
-<li>一个可用于从applet到Java EE等不同运行环境的核心Bean工厂。</li>
-<li>数据事物的一般化抽象层，允许宣告式(Declearative)事务管理器，简化事务的划分使之与底层无关。</li>
-<li>内建的针对JTA和单个JDBC数据源的一般化策略，使Spring的事务支持不要求Java EE环境，这与一般的JTA或者EJB CMT相反。</li>
-<li>JDBC抽象层提供了有针对性的异常等级(不再从SQL异常中提取原始代码),简化了错误处理，大大减少了程序员的编码量。再次利用JDBC时，你无需再写出另一个“终止”(finally)模块。并且面向JDBC的异常与Spring通用数据访问对象(Data Access Object)异常等级相一致。</li>
-<li>以资源容器，Dao实现和事务策略等形式与Hibernate，JDO和ibatis SQL Maps集成。利用众多的反转控制方便特性来全面支持，解决了许多了许多典型的Hibernate集成问题。所有这些全部遵从Spring通用事务处理和通用数据访问对象异常等级规范。</li>
-<li>灵活的基于核心Spring功能的MVC网页应用程序框架。开发者通过策略接口将拥有对该框架的高度控制，因而该框架将适用于多种呈现(View)技术，例如JSP FreeMarker Velocity Tiles iText 以及POI。值得注意的是，Spring中间层可以轻易地结合于任何基于MVC框架的网页层，例如Struts WebWork 或 Tapestry。</li>
-<li>提供诸如事务管理等服务的面向对象编程框架。</li>
-</ul>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
     <article id="post-git" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1138,6 +1071,110 @@ public class Merge_Sort {
       
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/JAVA/">JAVA</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-e7-ad-96-e7-95-a5-e6-a8-a1-e5-bc-8f" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/12/e7-ad-96-e7-95-a5-e6-a8-a1-e5-bc-8f/" class="article-date">
+  	<time datetime="2015-12-11T20:05:00.000Z" itemprop="datePublished">2015-12-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/12/e7-ad-96-e7-95-a5-e6-a8-a1-e5-bc-8f/">策略模式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>策略模式定义</strong>：定义了算法族，分别封装起来，让它们之间可以互相替换，此模式让算法的变化独立于使用算法的客户。</p>
+<p><strong>设计原则</strong>：找出应用中可能需要变化之处，把它们独立出来，不要和那些不需要变化的代码混在一起。<br>为什么要用设计模式</p>
+<ol>
+<li>我们使用继承的方式进行扩展的时候如果在父类加上任意一个需要变化的方法，在子类的继承下需要分别实现。对代码的局部修改影响了不止是局部。</li>
+<li><p>我们要使用接口的话当需要该方法的类实现该接口，如果对每个子类都需要稍微修改一下。代码的重复的会特别多。<br>为什么有部分代码需要一直改变呢</p>
+</li>
+<li><p>顾客需要新功能，进行扩展</p>
+</li>
+<li>web开发需要采用其他数据库产品，格式不兼容<br>我们用一个案例进行分析，古代进行发动战争，将军需要用宝剑杀人，杀手需要用匕首杀人。士兵需要用弓箭杀人。</li>
+</ol>
+<ul>
+<li>如果使用继承Charactor（角色）的情况，Charactor有一个fight()抽象方法，各种角色的士兵继承父类的方法，有些人不需要fight如平民。如果需要在父类增加谋略方法的话，子类都有了这个方法，不需要的还要置空，因为士兵只需要执行命令不需要谋略。</li>
+<li>同样我们采用接口的方法 需要的实现接口不需要的可以不实现。但是如果其中一些实现接口的需要少量修改一部分内容，我们发现需要更该每个方法，重复造成了浪费。<br>只有这个时候我们才发现设计模式的重要性，我们可以把两者相结合，经常需要变化的抽象并封装起来，和其他稳定的代码有所区别，代码变化引起来的不经意后果变少，系统变得更加有弹性。</li>
+</ul>
+<p>我们需要把角色的经常变化的行为从Character中抽象出来。建立一组新类来代表每个行为。行为最好可以动态的变化 ，所以我们要针对接口编程，而不是针对实现编程。</p>
+<p>我们用接口代表行为，Fighthavior接口，而行为的实现实现本接口。当然我们不能用角色实现Fighthavior接口。我们需要制造一组其他类来实现weaponBehavior 接口。AxeBehavior 和knifeBehavior 分别进行实现。</p>
+<p>现在在Character类中加入实例变量，声明为接口而不是具体类实现类型，每个角色都会动态的设置变量意在运行的时候采用正确的行为类型，我们用一个相似的方法 performFight（）来实现行为。</p>
+<p>类为这样，</p>
+<p><pre class="brush: csharp; auto-links: true; collapse: false; first-line: 1; gutter: true; html-script: false; light: false; ruler: false; smart-tabs: true; tab-size: 4; toolbar: true;">public abstract class Character {<br>    WeaponBehavior weaponBehavior;</pre></p>
+<p>public void preformKill(){<br>        weaponBehavior.useWeapon();<br>    } </p>
+<p>}<br><br>而他的子类这样，在构造函数中给父类的变量进行实现，这叫做针对超类编程</p>
+<p><pre class="brush: csharp; auto-links: true; collapse: false; first-line: 1; gutter: true; html-script: false; light: false; ruler: false; smart-tabs: true; tab-size: 4; toolbar: true;">public  class Queen extends Character{<br>    public Queen(){<br>        weaponBehavior = new KnifeBehavior();<br>    }<br>}</pre><br>加入 fight接口</p>
+<p><pre class="brush: csharp; auto-links: true; collapse: false; first-line: 1; gutter: true; html-script: false; light: false; ruler: false; smart-tabs: true; tab-size: 4; toolbar: true;">public interface WeaponBehavior {<br>    public void useWeapon();<br>}</pre><br>和他的两个实现</p>
+<p><pre class="brush: csharp; auto-links: true; collapse: false; first-line: 1; gutter: true; html-script: false; light: false; ruler: false; smart-tabs: true; tab-size: 4; toolbar: true;">public class KnifeBehavior implements WeaponBehavior{ </pre></p>
+<pre><code>@Override
+public void useWeapon() {
+    // TODO Auto-generated method stub
+    System.out.println(&quot;knife&quot;);
+} 
+</code></pre><p>} </p>
+<p>public class AxeBehavior implements WeaponBehavior { </p>
+<pre><code>@Override
+public void useWeapon() {
+    // TODO Auto-generated method stub
+    System.out.println(&quot;Axe&quot;);
+} 
+</code></pre><p>}<br><br>进行测试</p>
+<p><pre class="brush: csharp; auto-links: true; collapse: false; first-line: 1; gutter: true; html-script: false; light: false; ruler: false; smart-tabs: true; tab-size: 4; toolbar: true;">public class test{</pre></p>
+<p>public static void main(String[] args) {<br>        Character character = new Queen();<br>        character.setWeaponBehavior(new AxeBehavior());<br>        character.preformKill();<br>    } </p>
+<p>}<br><br>可看出输出Axe</p>
+<p>我们还可以在</p>
+<p><pre class="brush: csharp; auto-links: true; collapse: false; first-line: 1; gutter: true; html-script: false; light: false; ruler: false; smart-tabs: true; tab-size: 4; toolbar: true;">character类中加入setter getter 方法 </pre></p>
+<p>public abstract class Character {<br>    WeaponBehavior weaponBehavior;<br>    public WeaponBehavior getWeaponBehavior() {<br>        return weaponBehavior;<br>    }<br>    public void setWeaponBehavior(WeaponBehavior weaponBehavior) {<br>        this.weaponBehavior = weaponBehavior;<br>    }<br>    public void preformKill(){<br>        weaponBehavior.useWeapon();<br>    }<br>}<br><br>这样我们就可以在 运行的时候随意改变武器</p>
+<p><pre class="brush: csharp; auto-links: true; collapse: false; first-line: 1; gutter: true; html-script: false; light: false; ruler: false; smart-tabs: true; tab-size: 4; toolbar: true;">public static void main(String[] args) {<br>        Character character = new Queen();<br>        character.setWeaponBehavior(new AxeBehavior());<br>        character.preformKill();<br>    }</pre><br><a href="http://laijie.top/wp-content/uploads/2015/12/QQ20151212232304.jpg" target="_blank" rel="external"><img src="http://laijie.top/wp-content/uploads/2015/12/QQ20151212232304_thumb.jpg" alt="QQ图片20151212232304" title="QQ图片20151212232304"></a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/策略模式/">策略模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/设计模式/">设计模式</a>
 	</div>
 
 
